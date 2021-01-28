@@ -1,0 +1,41 @@
+.kehuCount{
+    /*border: solid 1px silver;*/
+    float: left;
+    height: 40px;
+    width: 268px;
+}
+.kehuCount span{
+    float: left;
+    width: 133px;
+    height: 40px;
+    line-height: 40px;
+    text-align:left;
+}
+.kehuCount span:nth-child(1){
+    /*border-left: solid 1px silver;*/
+    /*font-size: 13px;*/
+}
+.kehuCount span:nth-child(2){
+    /*border-left: solid 1px silver;*/
+    cursor:pointer;
+    font-size: 17px;
+}
+
+.tableCount{
+    /*border: solid 1px silver;*/
+    float: left;
+    height: 40px;
+    width: 201px;
+}
+.tableCount span{
+    float: left;
+    width: 100px;
+    height: 40px;
+    line-height: 40px;
+    text-align:left;
+}
+.tableCount span:nth-child(2){
+    /*border-left: solid 1px silver;*/
+    cursor:pointer;
+    font-size: 17px;
+}

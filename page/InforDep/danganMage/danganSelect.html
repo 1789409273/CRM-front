@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>分配记录客户</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="../../../lib/layui-v2.5.5/css/layui.css" media="all">
+    <link rel="stylesheet" href="../../../css/public.css" media="all">
+</head>
+<body>
+<div class="layuimini-container">
+    <div class="layuimini-main">
+        <fieldset class="table-search-fieldset">
+            <legend>客户信息</legend>
+            <div style="margin: 10px 10px 10px 10px">
+                <form class="layui-form" action="">
+                    <div class="layui-form-item">
+                        <div class="layui-inline">
+                            <label class="layui-form-label">客户名称：</label>
+                            <div class="layui-input-inline" style="width: 100px;height: 37px;">
+                                <span style="line-height: 37px">天癸龙</span>
+                            </div>
+                        </div>
+                        <div class="layui-inline">
+                            <label class="layui-form-label">协议号：</label>
+                            <div class="layui-input-inline" style="width: 100px;height: 37px;">
+                                <span style="line-height: 37px">2351551</span>
+                            </div>
+                        </div>
+
+                        <div class="layui-inline">
+                            <label class="layui-form-label">档案号：</label>
+                            <div class="layui-input-inline" style="width: 100px;height: 37px;">
+                                <span style="line-height: 37px">251525</span>
+                            </div>
+                        </div>
+
+                        <div class="layui-inline">
+                            <label class="layui-form-label">客户经理：</label>
+                            <div class="layui-input-inline" style="width: 100px;height: 37px;">
+                                <span style="line-height: 37px">测试一部</span>
+                            </div>
+                        </div>
+
+                        <div class="layui-inline" style="float: right">
+                            <button class="layui-btn layui-btn-primary" lay-submit lay-filter="data-jiechu-btn" style="width: 100px" type="button"> 借 出 </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </fieldset>
+
+        <table class="layui-table" id="currentTableId" lay-filter="currentTableFilter"></table>
+
+    </div>
+</div>
+<script src="../../../lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
+<script>
+    layui.use(['form', 'table'], function () {
+        var $ = layui.jquery,
+            form = layui.form,
+            table = layui.table;
+
+        table.render({
+            elem: '#currentTableId',
+            url: '../../../api/danganSelect.json',
+            defaultToolbar: false,
+            cols: [[
+                {type: "checkbox"},
+                {field: 'id',  title: 'ID',hide:true},
+                {field: 'type',  title: '原件类型'},
+                {field: 'time', title: '收录日期'},
+                {field: 'statement',title: '状态',
+                    templet: function(res) {
+                        if(res.statement == '0') {
+                            return '<a href="#"><span style="color:green">已收录</span></a>';
+                        } else if(res.statement == '1') {
+                            return '<span style="color:red">已借出</span>';
+                        } else {
+                            return '<span style="color:yellow">已申请</span>';
+                        }
+                    }},
+            ]],
+            page: { //支持传入 laypage 组件的所有参数（某些参数除外，如：jump/elem） - 详见文档
+                layout: ['count', 'prev', 'page', 'next', 'skip'] //自定义分页布局
+                ,groups: 3 //只显示 1 个连续页码
+                ,first: false //不显示首页
+                ,last: false //不显示尾页
+
+            },
+            skin: 'line'
+        });
+
+        // 监听借出操作
+        form.on('submit(data-jiechu-btn)', function (data) {
+            var checkStatus = table.checkStatus('currentTableId')
+                , data = checkStatus.data;
+            let jiechudata = JSON.stringify(data)
+            localStorage.setItem("jiechudata",jiechudata);
+            var index = layer.open({
+                title: '原件借出申请',
+                type: 2,
+                shade: 0.2,
+                maxmin:true,
+                shadeClose: true,
+                area: ['100%', '100%'],
+                content: 'danganJC.html',
+            });
+            $(window).on("resize", function () {
+                layer.full(index);
+            });
+        });
+
+    });
+</script>
