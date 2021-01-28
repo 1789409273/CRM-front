@@ -13,29 +13,21 @@
 <div class="layuimini-container">
     <div class="layuimini-main">
         <fieldset class="table-search-fieldset">
-            <legend>客户搜索</legend>
-            <div style="margin: 10px 10px 10px 10px">
+            <legend>客户合并规则</legend>
+            <div style="margin: 5px 5px 5px 5px">
                 <form class="layui-form layui-form-pane" action="">
-                    <div class="layui-form-item">
-                        <div class="layui-inline">
-                            <label class="layui-form-label" style="width: 150px">手机号所属人：</label>
-                            <div class="layui-input-inline">
-                                <input type="text" name="phone" autocomplete="off" class="layui-input">
-                            </div>
-                        </div>
-
-                        <div class="layui-inline" style="float: right">
-                            <button class="layui-btn layui-btn-primary" lay-submit lay-filter="data-jiechu-btn" style="width: 100px" type="button"><i class="layui-icon"></i> 合 并 </button>
-                        </div>
-                        <div class="layui-inline" style="float: right">
-                            <button class="layui-btn layui-btn-primary" lay-submit lay-filter="data-jiechu-btn" style="width: 100px" type="button"><i class="layui-icon"></i> 搜 索 </button>
-                        </div>
+                    <div>
+                        <b>自动合并：</b>非签单/非电台网络称为普通客户，这类客户同一所属人以电话号码判断，相同数据自动合并。如果有签单+电台的情况不合并。<br>
+                        <b>手动合并：</b>部门经理可以手动合并他们部门内部的重复数据。按条件查询（手机号所属人【限定两人】）相同的客户查询出来批量合并，批量合并后选择归属人，合并完发站内信通知。<br>
+                        <b>合并后数据保留规则：</b>单选项字段内容以最后修改时间为准，文本合并。如果其中是普通客户和签单客户，以签单客户里的字段为准。
                     </div>
                 </form>
             </div>
+            <table class="layui-table" id="currentTableId" lay-filter="currentTableFilter"></table>
+            <div style="width: 100%">
+                <div style="display: flex;align-items: center;justify-content: center"><button class="layui-btn layui-btn-lg layui-btn-normal" type="button"><i class="layui-icon layui-icon-add-1"></i> 合 并 </button></div>
+            </div>
         </fieldset>
-
-        <table class="layui-table" id="currentTableId" lay-filter="currentTableFilter"></table>
 
     </div>
 </div>
@@ -51,24 +43,15 @@
             url: '../../api/kehuHB.json',
             defaultToolbar: false,
             cols: [[
-                {type: "checkbox"},
-                {field: 'department',  title: '部门'},
                 {field: 'phone',  title: '手机号'},
                 {field: 'customer_name',  title: '客户姓名'},
                 {field: 'owner',  title: '归属人'},
                 {field: 'create_by',  title: '创建人'},
                 {field: 'create_time', title: '创建时间'},
-                {field: 'last_modified_bys', title: '最后修改人'},
-                {field: 'last_modified_by', title: '最后修改时间'},
             ]],
             done:function(res, curr, count) {
                 merge(res);//调用
             },
-            page: { //支持传入 laypage 组件的所有参数（某些参数除外，如：jump/elem） - 详见文档
-                layout: ['count', 'prev', 'page', 'next', 'skip'] //自定义分页布局
-                ,groups: 3 //只显示 1 个连续页码
-            },
-            skin: 'line'
         });
         //表的合并
         function merge(res) {
@@ -119,26 +102,12 @@
                 maxmin:true,
                 shadeClose: true,
                 area: ['50%', '90%'],
-                content: 'kebingguize.html',
+                content: 'danganJC.html',
             });
             $(window).on("resize", function () {
                 layer.full(index);
             });
         });
-        //监听全选
-        form.on("checkbox(siam_all)", function () {
-            var status = $(this).prop("checked");
-            $.each($("input[name=siam_one]"), function (i, value) {
-                $(this).prop("checked", status);
-            });
-            form.render();
-        });
 
     });
-</script>
-<script type="text/html" id="checkbd">
-    {{#  if (d.statement === '0'){ }}
-    <input type="checkbox" name="siam_one" title="" lay-skin="primary"
-           data-id = "{{d.id}}" data-type = {{d.type}} data-time =  {{d.time}}  data-statement =  {{d.statement}}>
-    {{#  } }}
 </script>

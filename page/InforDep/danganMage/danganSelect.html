@@ -68,7 +68,11 @@
             url: '../../../api/danganSelect.json',
             defaultToolbar: false,
             cols: [[
-                {type: "checkbox"},
+                {
+                    templet: "#checkbd",
+                    title: "<input type='checkbox' name='siam_all' title='' lay-skin='primary' lay-filter='siam_all'> ",
+                    width: 60,
+                },
                 {field: 'id',  title: 'ID',hide:true},
                 {field: 'type',  title: '原件类型'},
                 {field: 'time', title: '收录日期'},
@@ -83,6 +87,15 @@
                         }
                     }},
             ]],
+            done:function(res, curr, count) {
+                for(var i in res.data){		//遍历整个表格数据
+                    var item = res.data[i];		//获取当前行数据
+                    // 02.如果已结算则整行变绿色
+                    if(item.statement !='0'){
+                        $("tr[data-index='" + i + "']").attr({"style":"background: rgba(242,242,242,0.5)"});  //将当前行改变颜色
+                    }
+                }
+            },
             page: { //支持传入 laypage 组件的所有参数（某些参数除外，如：jump/elem） - 详见文档
                 layout: ['count', 'prev', 'page', 'next', 'skip'] //自定义分页布局
                 ,groups: 3 //只显示 1 个连续页码
@@ -92,13 +105,16 @@
             },
             skin: 'line'
         });
-
         // 监听借出操作
         form.on('submit(data-jiechu-btn)', function (data) {
-            var checkStatus = table.checkStatus('currentTableId')
-                , data = checkStatus.data;
-            let jiechudata = JSON.stringify(data)
-            localStorage.setItem("jiechudata",jiechudata);
+            let data1 = '[';
+            $.each($("input[name=siam_one]:checked"), function (i, value) {
+                data1+='{"id": "'+$(this).attr("data-id")+'", "type": "'+$(this).attr("data-type")+'"' +
+                    ',"time": "'+$(this).attr("data-time")+'","statement": "'+$(this).attr("data-statement")+'"},'
+            });
+            data1+=']';
+            data1 = eval('(' + data1 + ')');
+            localStorage.setItem("jiechudata",JSON.stringify(data1));
             var index = layer.open({
                 title: '原件借出申请',
                 type: 2,
@@ -112,6 +128,20 @@
                 layer.full(index);
             });
         });
+        //监听全选
+        form.on("checkbox(siam_all)", function () {
+            var status = $(this).prop("checked");
+            $.each($("input[name=siam_one]"), function (i, value) {
+                $(this).prop("checked", status);
+            });
+            form.render();
+        });
 
     });
+</script>
+<script type="text/html" id="checkbd">
+    {{#  if (d.statement === '0'){ }}
+    <input type="checkbox" name="siam_one" title="" lay-skin="primary"
+           data-id = "{{d.id}}" data-type = {{d.type}} data-time =  {{d.time}}  data-statement =  {{d.statement}}>
+    {{#  } }}
 </script>

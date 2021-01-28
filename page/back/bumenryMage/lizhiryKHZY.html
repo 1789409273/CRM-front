@@ -21,7 +21,7 @@
                         <div class="layui-inline">
                             <label class="layui-form-label"> 部 门：</label>
                             <div class="layui-input-inline">
-                                <input type="text" name="username" autocomplete="off" class="layui-input">
+                                <input type="text" name="department" autocomplete="off" class="layui-input">
                             </div>
                         </div>
                         <div class="layui-inline">
@@ -32,17 +32,16 @@
                         </div>
 
                         <div class="layui-inline" style="float: right">
-                            <button type="submit" class="layui-btn layui-btn-primary" lay-submit lay-filter="data-jiechu-btn"><i class="layui-icon"></i> 转 移 </button>
+                            <button class="layui-btn layui-btn-primary" lay-submit lay-filter="data-jiechu-btn" style="width: 100px" type="button"> 转 移 </button>
                         </div>
                         <div class="layui-inline" style="float: right">
-                            <button type="submit" class="layui-btn layui-btn-primary"  lay-submit lay-filter="data-jiechu-btn"><i class="layui-icon"></i> 查 询 </button>
+                            <button class="layui-btn layui-btn-primary" lay-submit lay-filter="data-jiechu-btn" style="width: 100px" type="button"> 查 询 </button>
                         </div>
-
-
                     </div>
                 </form>
             </div>
         </fieldset>
+
 
         <script type="text/html" id="toolbarDemo">
             <div class="layui-btn-container">
@@ -55,12 +54,6 @@
             <legend>客户列表</legend>
         </fieldset>
         <table class="layui-table" id="currentTableId" lay-filter="currentTableFilter"></table>
-
-        <script type="text/html" id="currentTableBar">
-            <a class="layui-btn layui-btn-normal layui-btn-xs data-count-edit" lay-event="edit">编辑</a>
-            <a class="layui-btn layui-btn-xs layui-btn-danger data-count-delete" lay-event="delete">删除</a>
-        </script>
-
     </div>
 </div>
 <script src="../../../lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
@@ -100,13 +93,13 @@
                 , data = checkStatus.data;
             let jiechudata = JSON.stringify(data)
             var index = layer.open({
-                title: '原件借出申请',
+                title: '详情',
                 type: 2,
                 shade: 0.2,
                 maxmin:true,
                 shadeClose: true,
-                area: ['100%', '100%'],
-                content: 'lizhiryKHZY.html',
+                area: ['50%', '90%'],
+                content: 'zhuanyi.html',
             });
             $(window).on("resize", function () {
                 layer.full(index);
