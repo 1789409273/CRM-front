@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>客户合并</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <script src="../../lib/datePicker/js/dataPickerJQ.js"></script>
+    <link rel="stylesheet" href="../../lib/layui-v2.5.5/css/layui.css" media="all">
+    <link rel="stylesheet" href="../../css/public.css" media="all">
+    <link rel="stylesheet" href="../../lib/datePicker/css/datepicker.css">
+
+
+</head>
+<body>
+<div class="layuimini-container">
+    <div class="layuimini-main">
+        <fieldset class="table-search-fieldset">
+            <legend>导入页面</legend>
+            <div>
+                <form class="layui-form" action="">
+                    <div class="layui-form-item">
+                        <div class="layui-inline">
+                            <label class="layui-form-label" style="width: 70px"><div style="float: left">电话：</div></label>
+                            <div class="layui-input-inline" style="width: 140px;height: 37px;">
+                                <input type="text" name="classify" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-inline">
+                            <label class="layui-form-label" style="width: 60px"><div style="float: left;font-size: 14px">姓名：</div></label>
+                            <div class="layui-input-inline" style="width: 140px;height: 37px;">
+                                <input type="text" name="classify" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+
+                        <div class="layui-inline">
+                            <label class="layui-form-label" style="width: 60px"><div style="float: left;font-size: 12px">数据来源：</div></label>
+                            <div class="layui-input-inline" style="width: 140px;height: 37px;">
+                                <select name="modules" lay-verify="required" lay-search="">
+                                    <option value="">请选择</option>
+                                    <option value="19">A</option>
+                                    <option value="20">B</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="layui-inline">
+                            <label class="layui-form-label"style="width: 60px"><div style="float: left;font-size: 14px">协议号：</div></label>
+                            <div class="layui-input-inline" style="width: 140px;height: 37px;">
+                                <input type="text" name="classify" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-inline">
+                            <label class="layui-form-label" style="width: 60px"><div style="float: left;font-size: 14px">时间：</div></label>
+                            <div class="layui-input-inline" style="height: 37px;">
+                                <div class="c-datepicker-date-editor J-datepicker-range-day mt10">
+                                    <input placeholder="开始日期" name="" class="c-datepicker-data-input only-date" value="" style="width: 73px">
+                                    <span class="c-datepicker-range-separator">-</span>
+                                    <input placeholder="结束日期" name="" class="c-datepicker-data-input only-date" value=""  style="width: 73px">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="layui-inline" style="float: right">
+                            <button class="layui-btn layui-btn-primary" lay-submit lay-filter="data-jiechu-btn" style="width: 100px" type="button"> 查 询 </button>
+                            <button class="layui-btn layui-btn-primary" lay-submit lay-filter="data-jiechu-btn" style="width: 100px" type="button"> 重 置 </button>
+                            <button class="layui-btn layui-btn-primary" lay-submit lay-filter="data-jiechu-btn" style="width: 100px" type="button"> 导 入 </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </fieldset>
+
+        <table class="layui-table" id="currentTableId" lay-filter="currentTableFilter"></table>
+
+    </div>
+</div>
+<script src="../../lib/datePicker/js/plugins/moment.min.js"></script>
+<script src="../../lib/datePicker/js/datepicker.all.js"></script>
+<script src="../../lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
+<script>
+    layui.use(['form', 'table'], function () {
+        var $ = layui.jquery,
+            form = layui.form,
+            table = layui.table;
+
+        table.render({
+            elem: '#currentTableId',
+            url: '../../api/khhb.json',
+            defaultToolbar: false,
+            cols: [[
+                {type: "checkbox"},
+                // {field: 'id',  title: 'ID'},
+                {field: 'tel',  title: '导入时间'},
+                {field: 'department', title: '姓名'},
+                {field: 'name', title: '性别'},
+                {field: 'name', title: '等级'},
+                {field: 'name', title: '前台中心'},
+                {field: 'name', title: '前台部门'},
+                {field: 'name', title: '客户经理'},
+                {field: 'name', title: '数据来源'},
+                {field: 'statement',title: '备注',
+                    templet: function(res) {
+                        if(res.statement == '0') {
+                            return '<a href="#"><span style="color:green">已收录</span></a>';
+                        } else if(res.statement == '1') {
+                            return '<span style="color:red">已借出</span>';
+                        } else {
+                            return '<span style="color:black">已申请</span>';
+                        }
+                    }},
+            ]],
+            page: { //支持传入 laypage 组件的所有参数（某些参数除外，如：jump/elem） - 详见文档
+                layout: ['count', 'prev', 'page', 'next', 'skip'] //自定义分页布局
+                ,groups: 3 //只显示 1 个连续页码
+                ,first: false //不显示首页
+                ,last: false //不显示尾页
+
+            },
+            skin: 'line'
+        });
+
+        // 监听借出操作
+        form.on('submit(data-jiechu-btn)', function (data) {
+            var checkStatus = table.checkStatus('currentTableId')
+                , data = checkStatus.data;
+            var index = layer.open({
+                title: '导入表格',
+                type: 2,
+                shade: 0.2,
+                maxmin:true,
+                shadeClose: true,
+                area: ['37%', '80%'],
+                content: 'dr.html',
+            });
+            $(window).on("resize", function () {
+                layer.full(index);
+            });
+        });
+
+
+    });
+
+    $(function(){
+        var DATAPICKERAPI = {
+            shortcutMonth: function () {
+                // 当月
+                var nowDay = moment().get('date');
+                var prevMonthFirstDay = moment().subtract(1, 'months').set({ 'date': 1 });
+                var prevMonthDay = moment().diff(prevMonthFirstDay, 'days');
+                return {
+                    now: '-' + nowDay + ',0',
+                    prev: '-' + prevMonthDay + ',-' + nowDay
+                }
+            },
+
+            rangeMonthShortcutOption1: function () {
+                var result = DATAPICKERAPI.shortcutMonth();
+                return [{
+                    name: '今日',
+                    day: '0,0',
+                }, {
+                    name: '昨天',
+                    day: '-1,-1',
+                }, {
+                    name: '最近7日',
+                    day: '-7,0',
+                }, {
+                    name: '最近30日',
+                    day: '-30,0',
+                }, {
+                    name: '本月',
+                    day: result.now,
+                }, {
+                    name: '上一月',
+                    day: result.prev,
+                }];
+            },
+        };
+
+        //年月日范围
+        $('.J-datepicker-range-day').datePicker({
+            hasShortcut: true,
+            format: 'YYYY-MM-DD',
+            isRange: true,
+            shortcutOptions: DATAPICKERAPI.rangeMonthShortcutOption1()
+        });
+    });
+
+</script>
+</body>
+</html>

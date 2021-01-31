@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/datepicker.css">
+    <script src="js/dataPickerJQ.js"></script>
+</head>
+<body >
+    <div class="c-datepicker-date-editor J-datepicker-range-day mt10">
+      <input placeholder="开始日期" name="" class="c-datepicker-data-input only-date" value="" style="width: 73px">
+      <span class="c-datepicker-range-separator">-</span>
+      <input placeholder="结束日期" name="" class="c-datepicker-data-input only-date" value=""  style="width: 73px">
+    </div>
+<script src="js/plugins/moment.min.js"></script>
+<script src="js/datepicker.all.min.js"></script>
+<script type="text/javascript">
+    $(function(){
+        var DATAPICKERAPI = {
+            shortcutMonth: function () {
+                // 当月
+                var nowDay = moment().get('date');
+                var prevMonthFirstDay = moment().subtract(1, 'months').set({ 'date': 1 });
+                var prevMonthDay = moment().diff(prevMonthFirstDay, 'days');
+                return {
+                    now: '-' + nowDay + ',0',
+                    prev: '-' + prevMonthDay + ',-' + nowDay
+                }
+            },
+
+            rangeMonthShortcutOption1: function () {
+                var result = DATAPICKERAPI.shortcutMonth();
+                return [{
+                    name: '今日',
+                    day: '0,0',
+                }, {
+                    name: '昨天',
+                    day: '-1,-1',
+                }, {
+                    name: '最近7日',
+                    day: '-7,0',
+                }, {
+                    name: '最近30日',
+                    day: '-30,0',
+                }, {
+                    name: '本月',
+                    day: result.now,
+                }, {
+                    name: '上一月',
+                    day: result.prev,
+                }];
+            },
+        };
+
+        //年月日范围
+        $('.J-datepicker-range-day').datePicker({
+            hasShortcut: true,
+            format: 'YYYY-MM-DD',
+            isRange: true,
+            shortcutOptions: DATAPICKERAPI.rangeMonthShortcutOption1()
+        });
+    });
+</script>
+</body>
+</html>
