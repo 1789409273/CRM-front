@@ -19,24 +19,35 @@
         <fieldset class="table-search-fieldset">
             <legend>导入页面</legend>
             <div>
-                <form class="layui-form" action="">
+                <form class="layui-form layui-form-pane" action="">
                     <div class="layui-form-item">
                         <div class="layui-inline">
-                            <label class="layui-form-label" style="width: 70px"><div style="float: left">电话：</div></label>
-                            <div class="layui-input-inline" style="width: 140px;height: 37px;">
+                            <label class="layui-form-label" >电话：</label>
+                            <div class="layui-input-inline">
                                 <input type="text" name="classify" autocomplete="off" class="layui-input">
                             </div>
                         </div>
                         <div class="layui-inline">
-                            <label class="layui-form-label" style="width: 60px"><div style="float: left;font-size: 14px">姓名：</div></label>
-                            <div class="layui-input-inline" style="width: 140px;height: 37px;">
+                            <label class="layui-form-label">姓名：</label>
+                            <div class="layui-input-inline">
                                 <input type="text" name="classify" autocomplete="off" class="layui-input">
                             </div>
                         </div>
 
                         <div class="layui-inline">
-                            <label class="layui-form-label" style="width: 60px"><div style="float: left;font-size: 12px">数据来源：</div></label>
-                            <div class="layui-input-inline" style="width: 140px;height: 37px;">
+                            <label class="layui-form-label" >时间：</label>
+                            <div class="layui-input-inline">
+                                <div class="c-datepicker-date-editor J-datepicker-range-day mt10">
+                                    <input placeholder="开始日期" name="" class="c-datepicker-data-input only-date" value="" style="width: 73px">
+                                    <span class="c-datepicker-range-separator">-</span>
+                                    <input placeholder="结束日期" name="" class="c-datepicker-data-input only-date" value=""  style="width: 73px">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="layui-inline">
+                            <label class="layui-form-label" >数据来源：</label>
+                            <div class="layui-input-inline">
                                 <select name="modules" lay-verify="required" lay-search="">
                                     <option value="">请选择</option>
                                     <option value="19">A</option>
@@ -45,19 +56,9 @@
                             </div>
                         </div>
                         <div class="layui-inline">
-                            <label class="layui-form-label"style="width: 60px"><div style="float: left;font-size: 14px">协议号：</div></label>
-                            <div class="layui-input-inline" style="width: 140px;height: 37px;">
+                            <label class="layui-form-label">协议号：</label>
+                            <div class="layui-input-inline">
                                 <input type="text" name="classify" autocomplete="off" class="layui-input">
-                            </div>
-                        </div>
-                        <div class="layui-inline">
-                            <label class="layui-form-label" style="width: 60px"><div style="float: left;font-size: 14px">时间：</div></label>
-                            <div class="layui-input-inline" style="height: 37px;">
-                                <div class="c-datepicker-date-editor J-datepicker-range-day mt10">
-                                    <input placeholder="开始日期" name="" class="c-datepicker-data-input only-date" value="" style="width: 73px">
-                                    <span class="c-datepicker-range-separator">-</span>
-                                    <input placeholder="结束日期" name="" class="c-datepicker-data-input only-date" value=""  style="width: 73px">
-                                </div>
                             </div>
                         </div>
 

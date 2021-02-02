@@ -9,7 +9,11 @@
     <script src="../../lib/jquery-3.4.1/jquery-3.4.1.min.js"></script>
     <link rel="stylesheet" href="../../lib/layui-v2.5.5/css/layui.css" media="all">
     <link rel="stylesheet" href="../../css/public.css" media="all">
-
+<style>
+    .lan:hover{
+        background-color: red;
+    }
+</style>
 </head>
 <body>
 
@@ -17,89 +21,143 @@
     <div class="layuimini-main">
 
         <fieldset class="table-search-fieldset">
-            <div>
                 <form class="layui-form layui-form-pane" action="" >
-                <div>
-                    <div class="layui-inline">
-                        <label class="layui-form-label" style="width: 110px">协议编号：</label>
-                        <div class="layui-input-inline" style="width: 112px">
-                            <input type="text" name="username"  autocomplete="off" value="XDSC001002" class="layui-input">
+                    <div class="layui-form-item">
+                        <div class="layui-inline">
+                            <label class="layui-form-label">协议编号：</label>
+                            <div class="layui-input-inline">
+                                <input type="text" name="username"  autocomplete="off" value="XDSC001002" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-inline">
+                            <label class="layui-form-label">贷款类型：</label>
+                            <div class="layui-input-inline">
+                                <input type="text" name="sex"  autocomplete="off" value="信贷" class="layui-input">
+                            </div>
                         </div>
                     </div>
-                    <div class="layui-inline">
-                        <label class="layui-form-label" style="width: 110px">贷款类型：</label>
-                        <div class="layui-input-inline" style="width: 112px">
-                            <input type="text" name="sex"  autocomplete="off" value="信贷" class="layui-input">
-                        </div>
-                    </div>
-                </div>
                 </form>
-            </div>
         </fieldset>
 
         <fieldset class="table-search-fieldset">
             <legend style="font-weight: bold">客户基本信息</legend>
             <div>
+                <form class="layui-form" action="">
+                    <div style="margin: 0px 2px">
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label">姓名：</label>
+                                <div class="layui-input-inline">
+                                    赵敏
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label">贷款意向：</label>
+                                <div class="layui-input-inline">
+                                    有意
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label">身份证号：</label>
+                                <div class="layui-input-inline">
+                                    512523652525214526
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label">房产数：</label>
+                                <div class="layui-input-inline">
+                                    2
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label">电话：</label>
+                                <div class="layui-input-inline">
+                                    1785858568
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label" >意向金额：</label>
+                                <div class="layui-input-inline">
+                                    12
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label">年龄：</label>
+                                <div class="layui-input-inline">
+                                    12
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label" >前台部门：</label>
+                                <div class="layui-input-inline">
+                                   测试一部
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label" >所属客户经理：</label>
+                                <div class="layui-input-inline">
+                                    无
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" >账单类型：</label>
+                                <div class="layui-input-inline" style="width: 117px">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </fieldset>
+
+        <fieldset class="table-search-fieldset">
+            <legend style="font-weight: bold">后台成本</legend>
+            <div>
                 <form class="layui-form layui-form-pane" action="">
                     <div class="layui-form-item">
                         <div class="layui-inline">
-                            <label class="layui-form-label" style="width: 110px">姓名：</label>
-                            <div class="layui-input-inline" style="width: 112px">
-                                <input type="text" name="username"  autocomplete="off" value="赵敏" class="layui-input">
+                            <label class="layui-form-label" >费用类型：</label>
+                            <div class="layui-input-inline">
+                                <select name="modules" lay-verify="required" lay-search="" >
+                                    <option value="" >请选择</option>
+                                    <option value="19">A</option>
+                                    <option value="20">B</option>
+                                </select>
                             </div>
                         </div>
                         <div class="layui-inline">
-                            <label class="layui-form-label" style="width: 110px">贷款意向：</label>
-                            <div class="layui-input-inline" style="width: 112px">
-                                <input type="text" name="sex"  autocomplete="off" class="layui-input">
+                            <label class="layui-form-label" >房产类型：</label>
+                            <div class="layui-input-inline">
+                                <select name="modules" lay-verify="required" lay-search="" >
+                                    <option value="" >请选择</option>
+                                    <option value="19">A</option>
+                                    <option value="20">B</option>
+                                </select>
                             </div>
                         </div>
                         <div class="layui-inline">
-                            <label class="layui-form-label" style="width: 110px">身份证号：</label>
-                            <div class="layui-input-inline" style="width: 112px">
-                                <input type="text" name="sex" value="151521515315"  autocomplete="off" class="layui-input">
-                            </div>
-                        </div>
-                        <div class="layui-inline">
-                            <label class="layui-form-label" style="width: 110px">房产数：</label>
-                            <div class="layui-input-inline" style="width: 112px">
-                                <input type="text" name="classify" autocomplete="off" value="0" class="layui-input">
-                            </div>
-                        </div>
-                        <div class="layui-inline">
-                            <label class="layui-form-label" style="width: 110px">电话：</label>
-                            <div class="layui-input-inline" style="width: 112px">
-                                <input type="text" name="classify" autocomplete="off" value="没有权限查看" class="layui-input">
-                            </div>
-                        </div>
-                        <div class="layui-inline">
-                            <label class="layui-form-label" style="width: 110px">意向金额：</label>
-                            <div class="layui-input-inline" style="width: 112px">
+                            <label class="layui-form-label" >百分比(%)：</label>
+                            <div class="layui-input-inline">
                                 <input type="text" name="classify" autocomplete="off" class="layui-input">
                             </div>
                         </div>
                         <div class="layui-inline">
-                            <label class="layui-form-label"style="width: 110px">年龄：</label>
-                            <div class="layui-input-inline"style="width: 112px">
+                            <label class="layui-form-label">固定费用(元)：</label>
+                            <div class="layui-input-inline">
                                 <input type="text" name="classify" autocomplete="off" class="layui-input">
                             </div>
                         </div>
                         <div class="layui-inline">
-                            <label class="layui-form-label" style="width: 110px">前台部门：</label>
-                            <div class="layui-input-inline"style="width: 112px">
-                                <input  type="text"  name="classify" autocomplete="off" class="layui-input">
+                            <label class="layui-form-label">后台总费用：</label>
+                            <div class="layui-input-inline">
+                                <input type="text" name="classify" autocomplete="off" class="layui-input">
                             </div>
                         </div>
                         <div class="layui-inline">
-                            <label class="layui-form-label" style="width: 110px">所属客户经理:</label>
-                            <div class="layui-input-inline"style="width: 112px">
-                                <input type="text"name="classify" autocomplete="off" class="layui-input">
-                            </div>
-                        </div>
-
-                        <div class="layui-inline">
-                            <label class="layui-form-label" style="width: 110px">账单类型</label>
-                            <div class="layui-input-inline" style="width: 112px">
+                            <label class="layui-form-label" >市区/郊县：</label>
+                            <div class="layui-input-inline">
                                 <select name="modules" lay-verify="required" lay-search="" >
                                     <option value="" >请选择</option>
                                     <option value="19">A</option>
@@ -113,86 +171,19 @@
         </fieldset>
 
         <fieldset class="table-search-fieldset">
-            <legend>后台成本</legend>
+            <legend style="font-weight: bold">前后台承担费用</legend>
             <div>
                 <form class="layui-form layui-form-pane" action="">
                     <div class="layui-form-item">
                         <div class="layui-inline">
-                            <label class="layui-form-label" style="width: 110px">费用类型：</label>
-                            <div class="layui-input-inline" style="width: 112px">
-                                <select name="modules" lay-verify="required" lay-search="" >
-                                    <option value="" >请选择</option>
-                                    <option value="19">A</option>
-                                    <option value="20">B</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="layui-inline">
-                            <label class="layui-form-label" style="width: 110px">房产类型：</label>
-                            <div class="layui-input-inline" style="width: 112px">
-                                <select name="modules" lay-verify="required" lay-search="" >
-                                    <option value="" >请选择</option>
-                                    <option value="19">A</option>
-                                    <option value="20">B</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="layui-inline">
-                            <label class="layui-form-label" style="width: 110px">百分比(%)：</label>
-                            <div class="layui-input-inline" style="width: 112px">
+                            <label class="layui-form-label">前后台承担费用：</label>
+                            <div class="layui-input-inline">
                                 <input type="text" name="classify" autocomplete="off" class="layui-input">
                             </div>
                         </div>
                         <div class="layui-inline">
-                            <label class="layui-form-label" style="width: 110px;font-size: 8px">固定费用(元)：</label>
-                            <div class="layui-input-inline"style="width: 112px">
-                                <input type="text" name="classify" autocomplete="off" class="layui-input">
-                            </div>
-                        </div>
-
-                        <div class="layui-inline">
-                            <div class="layui-input-block">
-                                <input type="checkbox" name="sex" value="自定义金额" title="自定义金额" checked="">
-                            </div>
-                        </div>
-
-                        <div class="layui-inline">
-                            <label class="layui-form-label"style="width: 110px;font-size: 8px">后台总费用：</label>
-                            <div class="layui-input-inline" style="width: 112px">
-                                <input type="text" name="classify" autocomplete="off" class="layui-input">
-                            </div>
-                        </div>
-                        <div class="layui-inline">
-                            <label class="layui-form-label" style="width: 110px">市区/郊县：</label>
-                            <div class="layui-input-inline" style="width: 112px">
-                                <select name="modules" lay-verify="required" lay-search="" >
-                                    <option value="" >请选择</option>
-                                    <option value="19">A</option>
-                                    <option value="20">B</option>
-                                </select>
-                            </div>
-                        </div>
-
-
-                    </div>
-                </form>
-            </div>
-        </fieldset>
-
-        <fieldset class="table-search-fieldset">
-            <legend>前后台承担费用</legend>
-            <div>
-                <form class="layui-form layui-form-pane" action="">
-                    <div class="layui-form-item">
-                        <div class="layui-inline">
-                            <label class="layui-form-label" style="width: 110px">前后台承担费用：</label>
-                            <div class="layui-input-inline" style="width: 112px">
-                                <input type="text" name="classify" autocomplete="off" class="layui-input">
-                            </div>
-                        </div>
-                        <div class="layui-inline">
-                            <label class="layui-form-label" style="width: 110px">总费用（元）：</label>
-                            <div class="layui-input-inline" style="width: 112px">
+                            <label class="layui-form-label">总费用（元）：</label>
+                            <div class="layui-input-inline">
                                 <input type="text" name="classify" autocomplete="off" class="layui-input">
                             </div>
                         </div>
@@ -206,31 +197,23 @@
                 </form>
             </div>
         </fieldset>
-        <div>
-            <ul class="layui-nav layui-nav-tree" style="width: 100%;height: 20px;background-color: gray"  lay-filter="test">
-                <li class="layui-nav-item layui-nav-itemed">
-                    <a style="height: 20px;" href="javascript:loaddd();"><div style="margin-top: -12px">做单渠道</div></a>
-                    <dl class="layui-nav-child">
-                    </dl>
-                </li>
+        <div class="layui-tab layui-tab-card">
+            <ul class="layui-tab-title">
+                <li class="layui-this">做单渠道</li>
+                <li>做单详情</li>
             </ul>
+            <div class="layui-tab-content" style="height: 100px;">
+                <div class="layui-tab-item layui-show"> <div id="nihao"></div></div>
+                <div class="layui-tab-item">2</div>
+            </div>
         </div>
-        <div id="nihao">
-
-        </div>
-        <script type="text/html" id="toolbarDemo">
-
-        </script>
     </div>
 </div>
 
 <script src="../../lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
 
 <script>
-    let i = 1;
-    function loaddd() {
         let html ='';
-        if (i%2==1){
             html = '<table class="layui-table" style="margin-top: -5px">\n' +
                 '  <thead>\n' +
                 '    <tr>\n' +
@@ -254,13 +237,8 @@
                 '      <td>2020-02-25</td>\n' +
                 '    </tr>\n' +
                 '  </tbody>\n' +
-                '</table>';
-            }else {
-            html='';
-        }
-        i++;
+                '</table>'
         $("#nihao").html(html);
-    }
 
     layui.use(['form', 'table','element'], function () {
         var $ = layui.jquery,

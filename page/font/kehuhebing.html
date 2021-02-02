@@ -9,6 +9,11 @@
     <link rel="stylesheet" href="../../lib/layui-v2.5.5/css/layui.css" media="all">
     <link rel="stylesheet" href="../../css/public.css" media="all">
 </head>
+<style>
+    .layui-table th{
+        font-weight: bold;
+    }
+</style>
 <body>
 <div class="layuimini-container">
     <div class="layuimini-main">
@@ -25,10 +30,10 @@
                         </div>
 
                         <div class="layui-inline" style="float: right">
-                            <button class="layui-btn layui-btn-primary" lay-submit lay-filter="data-jiechu-btn" style="width: 100px" type="button"><i class="layui-icon layui-icon-templeate-1"></i> 合 并 </button>
+                            <button class="layui-btn layui-btn-primary" lay-submit lay-filter="data-jiechu-btn" style="width: 100px;" type="button"><i class="layui-icon layui-icon-templeate-1"></i> 合 并 </button>
                         </div>
                         <div class="layui-inline" style="float: right">
-                            <button class="layui-btn layui-btn-primary" lay-submit lay-filter="data-jiechu-btn" style="width: 100px" type="button"><i class="layui-icon"></i> 搜 索 </button>
+                            <button class="layui-btn layui-btn-primary"  lay-submit lay-filter="data-jiechu-btn" style="width: 100px" type="button"><i class="layui-icon"></i> 搜 索 </button>
                         </div>
                     </div>
                 </form>
@@ -52,7 +57,7 @@
             defaultToolbar: false,
             cols: [[
                 {type: "checkbox"},
-                {field: 'department',  title: '部门'},
+                {field: 'department',  title: '部门',},
                 {field: 'phone',  title: '手机号'},
                 {field: 'customer_name',  title: '客户姓名'},
                 {field: 'owner',  title: '归属人'},
