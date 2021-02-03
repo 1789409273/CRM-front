@@ -21,12 +21,12 @@
             <div>
                 <form class="layui-form layui-form-pane" action="">
                     <div class="layui-form-item">
-                        <div class="layui-inline">
-                            <label class="layui-form-label" >电话：</label>
-                            <div class="layui-input-inline">
-                                <input type="text" name="classify" autocomplete="off" class="layui-input">
-                            </div>
-                        </div>
+<!--                        <div class="layui-inline">-->
+<!--                            <label class="layui-form-label" >电话：</label>-->
+<!--                            <div class="layui-input-inline">-->
+<!--                                <input type="text" name="classify" autocomplete="off" class="layui-input">-->
+<!--                            </div>-->
+<!--                        </div>-->
                         <div class="layui-inline">
                             <label class="layui-form-label">姓名：</label>
                             <div class="layui-input-inline">
@@ -61,11 +61,10 @@
                                 <input type="text" name="classify" autocomplete="off" class="layui-input">
                             </div>
                         </div>
-
-                        <div class="layui-inline" style="float: right">
-                            <button class="layui-btn layui-btn-primary" lay-submit lay-filter="data-jiechu-btn" style="width: 100px" type="button"> 查 询 </button>
-                            <button class="layui-btn layui-btn-primary" lay-submit lay-filter="data-jiechu-btn" style="width: 100px" type="button"> 重 置 </button>
-                            <button class="layui-btn layui-btn-primary" lay-submit lay-filter="data-jiechu-btn" style="width: 100px" type="button"> 导 入 </button>
+                        <div class="layui-inline" style="float: right;margin-right: 43px">
+                            <button class="layui-btn layui-btn-normal" type="button"><i class="layui-icon"></i> 查 询</button>
+                            <button class="layui-btn layui-btn-normal" type="button"><i class="layui-icon layui-icon-refresh-1"></i> 重 置</button>
+                            <button class="layui-btn layui-btn-normal" type="button" lay-submit lay-filter="data-jiechu-btn"><i class="layui-icon layui-icon-file"></i> 导 入</button>
                         </div>
                     </div>
                 </form>
@@ -131,7 +130,7 @@
                 shade: 0.2,
                 maxmin:true,
                 shadeClose: true,
-                area: ['37%', '80%'],
+                area: ['37%', '81%'],
                 content: 'dr.html',
             });
             $(window).on("resize", function () {
